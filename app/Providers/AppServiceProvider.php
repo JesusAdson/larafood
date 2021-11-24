@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\{
+    Plan
+};
 use App\Contracts\{
     Plans\PlansRepositoryInterface
 };
-
+use App\Observers\PlanObserver;
 use App\Repositories\{
     Plans\PlansRepository
 };
@@ -32,6 +35,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Plan::observe(PlanObserver::class);
     }
 }

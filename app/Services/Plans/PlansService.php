@@ -2,7 +2,6 @@
 
 namespace App\Services\Plans;
 
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Contracts\Plans\PlansRepositoryInterface;
 
@@ -23,7 +22,6 @@ class PlansService
     public function create(Request $request)
     {
         $attributes = $request->all();
-        $attributes['url'] = Str::kebab($request->name);
         return $this->plans_repository->create($attributes);
     }
 
