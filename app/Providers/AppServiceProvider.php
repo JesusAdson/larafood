@@ -3,14 +3,20 @@
 namespace App\Providers;
 
 use App\Models\{
-    Plan
+    Plan,
+    DetailPlan,
 };
 use App\Contracts\{
-    Plans\PlansRepositoryInterface
+    Plans\PlansRepositoryInterface,
+    Details\DetailsPlanRepositoryInterface
 };
-use App\Observers\PlanObserver;
+use App\Observers\{
+    PlanObserver
+};
+
 use App\Repositories\{
-    Plans\PlansRepository
+    Plans\PlansRepository,
+    DetailsPlan\DetailsPlanRepository
 };
 
 
@@ -26,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(PlansRepositoryInterface::class, PlansRepository::class);
+        $this->app->bind(DetailsPlanRepositoryInterface::class, DetailsPlanRepository::class);
     }
 
     /**

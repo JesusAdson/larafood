@@ -4,6 +4,7 @@ namespace App\Services\Plans;
 
 use Illuminate\Http\Request;
 use App\Contracts\Plans\PlansRepositoryInterface;
+use Exception;
 
 class PlansService
 {
@@ -33,10 +34,12 @@ class PlansService
     public function delete($id)
     {
         $plan = $this->getById($id);
-
-        if($plan)
+        if($plan && $plan->details->count() == 0)
         {
             return $this->plans_repository->delete($plan);
+        }else if($plan->details->count() > 0)
+        {
+            return ['error', 'Não é possível deletar um plano com detalhes!'];
         }else
         {
             return false;
