@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\DetailPlan;
+namespace App\Http\Requests\Profile;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DetailsPlanRequest extends FormRequest
+class ProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

@@ -9,6 +9,12 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/', "PlanController@index")->name('admin.index');
 
     /**
+     * Routes Profiles
+     */
+    Route::any('/profiles/search', "ACL//ProfileController@search")->name('profiles.search');
+     Route::resource('/profiles', ACL\ProfileController::class, );
+
+    /**
      * Routes Details Plans
      */
     Route::resource('/plans/{id}/details', DetailPlanController::class);
