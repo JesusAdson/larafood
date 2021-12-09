@@ -122,7 +122,13 @@ class PlanController extends Controller
     {
         $delete = $this->plans_service->delete($id);
 
-        if(!$delete) return redirect()->back();
+        if(!$delete)
+        {
+            return redirect()->back();
+        }else if(is_array($delete))
+        {
+            return redirect()->back()->with($delete[0], $delete[1]);
+        }
 
         return redirect()->route('plans.index')->with('success', 'O plano foi deletado com sucesso!');
     }

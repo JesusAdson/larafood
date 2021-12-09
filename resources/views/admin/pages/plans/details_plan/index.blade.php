@@ -3,11 +3,13 @@
 @section('tile', 'Planos')
 
 @section('content_header')
-    <h1>Planos <a href="{{route('plans.create')}}" class="btn btn-success"><i class="fas fa-plus"></i></a></h1>
+    <h1>Detalhes do plano {{$plan->name}} <a href="{{route('details.create', $plan->id)}}" class="btn btn-success"><i class="fas fa-plus"></i></a></h1>
 
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a class="active" href="{{route('admin.index')}}">Dashboard</a></li>
-        <li class="breadcrumb-item"><a class="active" href="{{route('plans.index')}}">Planos</a></li>
+        <li class="breadcrumb-item"><a class="active" href="{{route('plans.index')}}">Plans</a></li>
+        <li class="breadcrumb-item"><a class="active" href="{{route('plans.show', $plan->id)}}">{{$plan->name}}</a></li>
+        <li class="breadcrumb-item"><a class="active" href="{{route('details.index', $plan->id)}}">Detalhes</a></li>
     </ol>
 @stop
 
@@ -31,19 +33,16 @@
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Preço</th>
-                        <th width="270">Ações</th>
+                        <th width="200">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($plans as $plan)
+                    @foreach ($detailsPlan as $detail)
                         <tr>
-                            <td>{{$plan->name}}</td>
-                            <td>{{number_format($plan->price, 2, ',', '.')}}</td>
-                            <td style="width=10px;">
-                                <a href="{{route('plans.show', $plan->id)}}" class="btn btn-warning"><i class="fas fa-eye"></i></a>
-                                <a href="{{route('plans.edit', $plan->id)}}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                <a href="{{route('details.index', ['id' => $plan->id])}}" class="btn btn-success"><i class="fas fa-list"></i></a>
+                            <td>{{$detail->name}}</td>
+                            <td style="width: 10px">
+                                <a href="{{route('details.show', [$plan->id, $detail->id])}}" class="btn btn-warning"><i class="fas fa-eye"></i></a>
+                                <a href="{{route('details.edit', [$plan->id, $detail->id])}}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -52,9 +51,9 @@
         </div>
         <div class="card-footer">
             @if (isset($filters))
-                {!! $plans->appends($filters)->links() !!}
+                {!! $detailsPlan->appends($filters)->links() !!}
             @else
-                {!! $plans->links() !!}
+                {!! $detailsPlan->links() !!}
             @endif
         </div>
     </div>

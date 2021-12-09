@@ -1,11 +1,9 @@
 <?php
-namespace App\Contracts\Plans;
+namespace App\Contracts;
 
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Collection;
 
-interface PlansRepositoryInterface
+interface BaseRepositoryInterface
 {
     /**
      * Return all plans available
@@ -29,14 +27,6 @@ interface PlansRepositoryInterface
      */
 
     public function getById(int $id): Model;
-
-    /**
-     * Get a plan by its ID with relashionships
-     * @param int $id
-     * @return Model
-     */
-
-     public function getByIdWithRelashionships(int $id): Model;
 
     /**
      * Delete a plan by its ID
