@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services\DetailsPlan;
+namespace App\Services\Plans;
 
 use Illuminate\Http\Request;
-use App\Contracts\Details\DetailsPlanRepositoryInterface;
+use App\Contracts\Plans\DetailsPlanRepositoryInterface;
 
 class DetailsPlanService
 {

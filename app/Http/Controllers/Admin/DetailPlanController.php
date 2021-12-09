@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\Plans\PlansService;
-use App\Services\DetailsPlan\DetailsPlanService;
-use App\Http\Requests\DetailPlan\DetailsPlanRequest;
+use App\Services\Plans\DetailsPlanService;
+use App\Http\Requests\Plan\DetailsPlanRequest;
 
 class DetailPlanController extends Controller
 {

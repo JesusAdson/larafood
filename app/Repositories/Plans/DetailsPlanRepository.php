@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repositories\DetailsPlan;
+namespace App\Repositories\Plans;
 
 use App\Models\DetailPlan;
 use App\Repositories\BaseRepository;
-use App\Contracts\Details\DetailsPlanRepositoryInterface;
+use App\Contracts\Plans\DetailsPlanRepositoryInterface;
 
 class DetailsPlanRepository extends BaseRepository implements DetailsPlanRepositoryInterface
 {

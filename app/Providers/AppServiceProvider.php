@@ -8,7 +8,8 @@ use App\Models\{
 };
 use App\Contracts\{
     Plans\PlansRepositoryInterface,
-    Details\DetailsPlanRepositoryInterface
+    Profiles\ProfilesRepositoryInterface,
+    Plans\DetailsPlanRepositoryInterface
 };
 use App\Observers\{
     PlanObserver
@@ -16,10 +17,9 @@ use App\Observers\{
 
 use App\Repositories\{
     Plans\PlansRepository,
-    DetailsPlan\DetailsPlanRepository
+    Profiles\ProfilesRepository,
+    Plans\DetailsPlanRepository
 };
-
-
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -33,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(PlansRepositoryInterface::class, PlansRepository::class);
         $this->app->bind(DetailsPlanRepositoryInterface::class, DetailsPlanRepository::class);
+        $this->app->bind(ProfilesRepositoryInterface::class, ProfilesRepository::class);
     }
 
     /**

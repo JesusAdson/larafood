@@ -1,5 +1,5 @@
 <?php
-namespace App\Contracts\Details;
+namespace App\Contracts\Plans;
 
 use Illuminate\Database\Eloquent\Model;
 

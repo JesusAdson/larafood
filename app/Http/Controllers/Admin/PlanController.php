@@ -88,9 +88,11 @@ class PlanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $result = $this->plans_service->update($request, $id);
+        $plan = $this->plans_service->getById($id);
 
-        if(!$result) return redirect()->route('plans.edit', $id)->with('error', 'Não foi possível atualizar o plano!');
+        if(!$plan) return redirect()->route('plans.edit', $id)->with('error', 'Plano não encontrado!');
+
+        $this->plans_service->update($request, $id);
 
         return redirect()->route('plans.edit', $id)->with('success', 'O plano foi atualizado com sucesso!');
 

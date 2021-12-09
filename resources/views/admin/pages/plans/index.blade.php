@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('tile', 'Planos')
+@section('title', 'Planos')
 
 @section('content_header')
     <h1>Planos <a href="{{route('plans.create')}}" class="btn btn-success"><i class="fas fa-plus"></i></a></h1>
@@ -22,7 +22,7 @@
                     <input type="text" name="filter" placeholder="Nome: " value="{{$filters['filter'] ?? ''}}" class="form-control">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-info">Filtrar</button>
+                    <button type="submit" class="btn btn-info ml-2">Filtrar</button>
                 </div>
             </form>
         </div>
