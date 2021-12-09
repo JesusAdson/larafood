@@ -114,4 +114,12 @@ class ProfileController extends Controller
 
         return redirect()->route('profiles.index')->with('success', 'Perfil deletado com sucesso!');
     }
+
+    public function search(Request $request)
+    {
+        $filters = $request->except('_token');
+        $profiles = $this->profile_service->search($request);
+
+        return view('admin.pages.profiles.index', compact('profiles', 'filters'));
+    }
 }
