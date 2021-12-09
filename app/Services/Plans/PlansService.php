@@ -33,7 +33,7 @@ class PlansService
 
     public function delete($id)
     {
-        $plan = $this->getById($id);
+        $plan = $this->plans_repository->getByIdWithRelashionships($id);
         if($plan && $plan->details->count() == 0)
         {
             return $this->plans_repository->delete($plan);

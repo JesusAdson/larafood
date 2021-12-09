@@ -4,6 +4,12 @@
 
 @section('content_header')
     <h1>Detalhes do plano <b>{{ $plan->name }}</b></h1>
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="active" href="{{route('admin.index')}}">Dashboard</a></li>
+        <li class="breadcrumb-item"><a class="active" href="{{route('plans.index')}}">Planos</a></li>
+        <li class="breadcrumb-item"><a class="active" href="{{route('plans.show', $plan->id)}}">{{$plan->name}}</a></li>
+    </ol>
 @stop
 
 @section('content')

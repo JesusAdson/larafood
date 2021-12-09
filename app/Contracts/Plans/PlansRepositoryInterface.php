@@ -31,6 +31,14 @@ interface PlansRepositoryInterface
     public function getById(int $id): Model;
 
     /**
+     * Get a plan by its ID with relashionships
+     * @param int $id
+     * @return Model
+     */
+
+     public function getByIdWithRelashionships(int $id): Model;
+
+    /**
      * Delete a plan by its ID
      * @param Model $plan
      */

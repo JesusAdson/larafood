@@ -35,10 +35,9 @@ class BaseRepository implements BaseRepositoryInterface
         return $model;
     }
 
-    public function getById(int $id): Model
+    public function getById(int $id, ?array $relationship = null): Model
     {
         return $this->model
-            ->with('details')
             ->where('id', $id)
             ->first();
     }

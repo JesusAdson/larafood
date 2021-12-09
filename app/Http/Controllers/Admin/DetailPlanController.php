@@ -122,6 +122,6 @@ class DetailPlanController extends Controller
         $delete = $this->details_plan_service->delete($detailId, $plan);
         if(!$delete) return redirect()->back();
 
-        return redirect()->route('plans.index')->with('success', 'O plano foi deletado com sucesso!');
+        return redirect()->route('plans.index')->with('success', 'O detalhe foi deletado com sucesso!');
     }
 }

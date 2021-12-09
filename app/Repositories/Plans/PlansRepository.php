@@ -3,8 +3,10 @@
 namespace App\Repositories\Plans;
 
 use App\Models\Plan;
-use App\Contracts\Plans\PlansRepositoryInterface;
 use App\Repositories\BaseRepository;
+use Illuminate\Database\Eloquent\Model;
+use App\Contracts\Plans\PlansRepositoryInterface;
+
 class PlansRepository extends BaseRepository implements PlansRepositoryInterface
 {
     /**
@@ -15,6 +17,14 @@ class PlansRepository extends BaseRepository implements PlansRepositoryInterface
     public function __construct(Plan $model)
     {
         parent::__construct($model);
+    }
+
+    public function getByIdWithRelashionships(int $id): Model
+    {
+        return $this->model
+            ->with('details')
+            ->where('id', $id)
+            ->first();
     }
 }
 ?>
