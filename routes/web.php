@@ -8,7 +8,15 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
      */
     Route::get('/', "PlanController@index")->name('admin.index');
 
-
+    /**
+     *Permission x Profile
+     */
+    Route::get('permissions/{permissionID}/profiles', 'ACL\PermissionProfileController@profiles')->name('permissions.profiles');
+    Route::get('profiles/{id}/permissions/{permissionID}/detach', 'ACL\PermissionProfileController@detachPermissions')->name('profiles.permissions.detach');
+    Route::post('profiles/{id}/permissions/store', 'ACL\PermissionProfileController@attachPermissionsProfile')->name('profiles.permissions.attach');
+    Route::get('profiles/{id}/permissions/create', 'ACL\PermissionProfileController@availablePermissions')->name('profiles.permissions.available');
+    Route::any('profiles/{id}/permissions/create/search', 'ACL\PermissionProfileController@filterAvailablePermissions')->name('profiles.permissions.available.search');
+    Route::get('profiles/{id}/permissions', 'ACL\PermissionProfileController@permissions')->name('profiles.permissions');
     /**
      * Routes Permissions
      */
