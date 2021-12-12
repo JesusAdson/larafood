@@ -59,5 +59,22 @@ class PermissionsService
             return false;
         }
     }
+
+    public function availablePermissions($profileID)
+    {
+        return $this->permissions_repository->availablePermissions($profileID);
+    }
+
+    public function availablePermissionsWithFilters($filter, $profileID)
+    {
+        return $this->permissions_repository->availablePermissionsWithFilters($filter, $profileID);
+    }
+
+    public function getProfiles($permissionID)
+    {
+        $relashionships = ['profiles'];
+        return $this->permissions_repository->getProfiles($permissionID, $relashionships);
+
+    }
 }
 ?>

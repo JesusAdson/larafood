@@ -30,6 +30,12 @@ class ProfilesService
         return $this->profile_repository->getById($id);
     }
 
+    public function getPermissions($id)
+    {
+        $relashionships = ['permissions'];
+        return $this->profile_repository->getPermissions($id, $relashionships);
+    }
+
     public function delete($id)
     {
         $profile = $this->profile_repository->getById($id);
@@ -58,6 +64,17 @@ class ProfilesService
         }else{
             return false;
         }
+    }
+
+    public function attachPermission(Request $request, $profileID)
+    {
+        return $this->profile_repository->attachPermissions($request->permissions, $profileID);
+
+    }
+
+    public function detachPermission($profileID, $permissionID)
+    {
+        return $this->profile_repository->detachPermissions($profileID, $permissionID);
     }
 }
 ?>
