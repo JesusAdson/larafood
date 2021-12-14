@@ -28,6 +28,14 @@ class PlansRepository extends BaseRepository implements PlansRepositoryInterface
             ->first();
     }
 
+    public function getAllWithRelationship(array $relationships)
+    {
+        return $this->model
+                ->with($relationships)
+                ->orderBy('price', 'ASC')
+                ->get();
+    }
+
     public function getProfiles(int $id, array $relationships)
     {
         $plan = $this->model->with($relationships)->where('id', $id)->first();

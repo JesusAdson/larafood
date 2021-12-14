@@ -11,15 +11,19 @@ interface PlansRepositoryInterface
      * Return all plans available
      * @param null|int $limit
      */
-
     public function getAllPaginated(?int $limit = 20);
+
+    /**
+     * Get all plans with relationship
+     * @param array $relationship
+     */
+    public function getAllWithRelationship(array $relashionships);
 
     /**
      * Create a new plan
      * @param array $request
      * @return Model
      */
-
     public function create(array $request): Model;
 
     /**
@@ -27,7 +31,6 @@ interface PlansRepositoryInterface
      * @param int $id
      * @return Model
      */
-
     public function getById(int $id): Model;
 
     /**
@@ -35,7 +38,6 @@ interface PlansRepositoryInterface
      * @param int $id
      * @return Model
      */
-
      public function getByIdWithRelashionships(int $id): Model;
 
     /**
@@ -48,7 +50,6 @@ interface PlansRepositoryInterface
      * Search a product by filter
      * @param string|null $param
      */
-
      public function search(string $param = null);
 
     /**
@@ -56,7 +57,6 @@ interface PlansRepositoryInterface
      * @param Model $plan
      * @param array $attributes
      */
-
      public function update(Model $plan, array $attributes);
 
     /**
@@ -72,7 +72,6 @@ interface PlansRepositoryInterface
        * @param array $profiles
        */
       public function attachProfiles(int $planID, array $profiles);
-
       /**
        * Detach a profile on a plan
        * @param int $planID
@@ -80,4 +79,3 @@ interface PlansRepositoryInterface
        */
       public function detachProfile(int $planID, int $profileID);
 }
-?>

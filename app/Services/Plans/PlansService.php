@@ -20,6 +20,12 @@ class PlansService
         return $this->plans_repository->getAllPaginated();
     }
 
+    public function getAllWithRelationship()
+    {
+        $relationships = ['details'];
+        return $this->plans_repository->getAllWithRelationship($relationships);
+    }
+
     public function create(Request $request)
     {
         $attributes = $request->all();
