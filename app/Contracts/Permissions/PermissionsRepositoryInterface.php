@@ -11,11 +11,11 @@ interface PermissionsRepositoryInterface extends BaseRepositoryInterface
      * @param array $permissions
      */
     public function getProfiles(int $permissionID, array $permissions);
+
     /**
     * Get all permissions that ain't linked with a profile
     * @param int $profileID
     */
-
     public function availablePermissions(int $profileID);
 
     /**

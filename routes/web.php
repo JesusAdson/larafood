@@ -9,6 +9,16 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/', "PlanController@index")->name('admin.index');
 
     /**
+    *Plan x Profile
+    */
+    Route::get('plans/{id}/profile/{idProfile}/detach', 'ACL\PlanProfileController@detachProfilePlan')->name('plans.profile.detach');
+    Route::post('plans/{id}/profiles', 'ACL\PlanProfileController@attachProfilesPlan')->name('plans.profiles.attach');
+    Route::get('plans/{id}/profiles/create', 'ACL\PlanProfileController@availableProfiles')->name('plans.profiles.available');
+    Route::any('plans/{id}/profiles/create/search', 'ACL\PlanProfileController@availableProfiles')->name('plans.profiles.available.search');
+    Route::get('plans/{id}/profiles', 'ACL\PlanProfileController@profiles')->name('plans.profiles');
+    Route::get('profiles/{id}/plans', 'ACL\PlanProfileController@plans')->name('profiles.plans');
+
+    /**
      *Permission x Profile
      */
     Route::get('permissions/{permissionID}/profiles', 'ACL\PermissionProfileController@profiles')->name('permissions.profiles');

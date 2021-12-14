@@ -58,5 +58,26 @@ interface PlansRepositoryInterface
      */
 
      public function update(Model $plan, array $attributes);
+
+    /**
+    * Get profiles linked with the plan
+    *@param int $id
+    *@param array $relashionships
+    */
+      public function getProfiles(int $id, array $relashionships);
+
+      /**
+       * Attach profile
+       * @param int $planID
+       * @param array $profiles
+       */
+      public function attachProfiles(int $planID, array $profiles);
+
+      /**
+       * Detach a profile on a plan
+       * @param int $planID
+       * @param int $profileID
+       */
+      public function detachProfile(int $planID, int $profileID);
 }
 ?>
