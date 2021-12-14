@@ -27,7 +27,7 @@
             <form action="{{ route('details.destroy', [$plan->id, $detail->id]) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Deletar o Detalhe {{ $detail->name }}, do plano {{ $plan->name }}</button>
+                <button type="submit" class="btn btn-danger">Excluir</button>
             </form>
         </div>
     </div>
