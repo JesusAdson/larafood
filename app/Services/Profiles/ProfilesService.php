@@ -76,5 +76,21 @@ class ProfilesService
     {
         return $this->profile_repository->detachPermissions($profileID, $permissionID);
     }
+
+    public function availableProfiles($planID)
+    {
+        return $this->profile_repository->availableProfiles($planID);
+    }
+
+    public function availablePermissionsWithFilters($filter, $profileID)
+    {
+        return $this->profile_repository->availableProfilesWithFilters($filter, $profileID);
+    }
+
+    public function getPlans($profileID)
+    {
+        $relashionships = ['plans'];
+        return $this->profile_repository->getPlans($profileID, $relashionships);
+    }
 }
 ?>

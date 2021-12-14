@@ -63,5 +63,22 @@ class PlansService
             return false;
         }
     }
+
+    public function getProfiles($id)
+    {
+        $relationships = ['profiles'];
+        return $this->plans_repository->getProfiles($id, $relationships);
+    }
+
+    public function attachProfiles($planID, Request $request)
+    {
+        $this->plans_repository->attachProfiles($planID, $request->profiles);
+    }
+
+    public function detachProfile($planID, $profileID)
+    {
+        return $this->plans_repository->detachProfile($planID, $profileID);
+    }
+
 }
 ?>
