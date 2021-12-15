@@ -53,7 +53,14 @@ Route::prefix('admin')
     Route::any('/plans/search', "PlanController@search")->name('plans.search');
     Route::resource('/plans', PlanController::class);
 });
-Route::get('/', 'Site\\SiteController@index')->name('site.home');
+
+/**
+ * Site
+ */
+Route::namespace('Site')->group(function (){
+    Route::get('/plan/{id}', 'SiteController@plan')->name('plan.subscription');
+    Route::get('/', 'SiteController@index')->name('site.home');
+});
 
 /**
  * Auth routes

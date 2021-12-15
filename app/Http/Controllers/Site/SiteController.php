@@ -19,4 +19,13 @@ class SiteController extends Controller
         $plans = $this->plan_service->getAllWithRelationship();
         return view('site.pages.home.index', compact('plans'));
     }
+
+    public function plan($planID)
+    {
+        if(!$plan = $this->plan_service->getById($planID)) return redirect()->back();
+
+        session()->put('plan', $plan);
+
+        return redirect()->route('register');
+    }
 }
