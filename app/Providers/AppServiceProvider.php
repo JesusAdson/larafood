@@ -5,22 +5,26 @@ namespace App\Providers;
 use App\Models\{
     Plan,
     DetailPlan,
+    Tenant,
 };
 use App\Contracts\{
     Plans\PlansRepositoryInterface,
     Profiles\ProfilesRepositoryInterface,
     Plans\DetailsPlanRepositoryInterface,
-    Permissions\PermissionsRepositoryInterface
+    Permissions\PermissionsRepositoryInterface,
+    Tenants\TenantsRepositoryInterface
 };
 use App\Observers\{
-    PlanObserver
+    PlanObserver,
+    TenantObserver
 };
 
 use App\Repositories\{
     Plans\PlansRepository,
     Profiles\ProfilesRepository,
     Plans\DetailsPlanRepository,
-    Permissions\PermissionsRepository
+    Permissions\PermissionsRepository,
+    Tenants\TenantsRepository,
 };
 use Illuminate\Support\ServiceProvider;
 
@@ -37,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(DetailsPlanRepositoryInterface::class, DetailsPlanRepository::class);
         $this->app->bind(ProfilesRepositoryInterface::class, ProfilesRepository::class);
         $this->app->bind(PermissionsRepositoryInterface::class, PermissionsRepository::class);
+        $this->app->bind(TenantsRepositoryInterface::class, TenantsRepository::class);
     }
 
     /**
@@ -47,5 +52,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Plan::observe(PlanObserver::class);
+        Tenant::observe(TenantObserver::class);
     }
 }

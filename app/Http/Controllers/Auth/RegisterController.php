@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Services\Tenants\TenantsService;
 
 class RegisterController extends Controller
 {
@@ -32,12 +33,14 @@ class RegisterController extends Controller
     protected $redirectTo = '/admin';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * TenantsService
+     *@var object
      */
-    public function __construct()
+    protected $tenant_service;
+
+    public function __construct(TenantsService $tenant_service)
     {
+        $this->tenant_service = $tenant_service;
         $this->middleware('guest');
     }
 
@@ -50,9 +53,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'email' => ['required', 'string', 'email', 'min:3', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'cnpj' => ['required', 'unique:tenants', 'numeric', 'min:14'],
+            'empresa' => ['required', 'string', 'unique:tenants,name','min:3', 'max:255'],
         ]);
     }
 
@@ -64,10 +69,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        if(!$plan = session('plan')) return redirect()->route('site.home');
+
+        $user = $this->tenant_service->create($data, $plan->id);
+
+        return $user;
+
     }
 }
