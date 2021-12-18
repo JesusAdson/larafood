@@ -12,7 +12,8 @@ use App\Contracts\{
     Profiles\ProfilesRepositoryInterface,
     Plans\DetailsPlanRepositoryInterface,
     Permissions\PermissionsRepositoryInterface,
-    Tenants\TenantsRepositoryInterface
+    Tenants\TenantsRepositoryInterface,
+    Users\UsersRepositoryInterface,
 };
 use App\Observers\{
     PlanObserver,
@@ -25,6 +26,7 @@ use App\Repositories\{
     Plans\DetailsPlanRepository,
     Permissions\PermissionsRepository,
     Tenants\TenantsRepository,
+    Users\UsersRepository,
 };
 use Illuminate\Support\ServiceProvider;
 
@@ -42,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ProfilesRepositoryInterface::class, ProfilesRepository::class);
         $this->app->bind(PermissionsRepositoryInterface::class, PermissionsRepository::class);
         $this->app->bind(TenantsRepositoryInterface::class, TenantsRepository::class);
+        $this->app->bind(UsersRepositoryInterface::class, UsersRepository::class);
     }
 
     /**
