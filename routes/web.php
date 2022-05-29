@@ -12,6 +12,12 @@ Route::prefix('admin')
          */
         Route::get('/', "PlanController@index")->name('admin.index');
 
+         /**
+         * Routes Categories
+         */
+        Route::any('/categories/search', "CategoryController@search")->name('categories.search');
+        Route::resource('/categories', CategoryController::class,);
+
         /**
          * Routes Users
          */

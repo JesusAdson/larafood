@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\{
+    Category,
     Plan,
     DetailPlan,
     Tenant,
@@ -14,10 +15,12 @@ use App\Contracts\{
     Permissions\PermissionsRepositoryInterface,
     Tenants\TenantsRepositoryInterface,
     Users\UsersRepositoryInterface,
+    Categories\CategoriesRepositoryInterface,
 };
 use App\Observers\{
     PlanObserver,
-    TenantObserver
+    TenantObserver,
+    CategoryObserver
 };
 
 use App\Repositories\{
@@ -27,6 +30,7 @@ use App\Repositories\{
     Permissions\PermissionsRepository,
     Tenants\TenantsRepository,
     Users\UsersRepository,
+    Categories\CategoriesRepository
 };
 use Illuminate\Support\ServiceProvider;
 
@@ -45,6 +49,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(PermissionsRepositoryInterface::class, PermissionsRepository::class);
         $this->app->bind(TenantsRepositoryInterface::class, TenantsRepository::class);
         $this->app->bind(UsersRepositoryInterface::class, UsersRepository::class);
+        $this->app->bind(CategoriesRepositoryInterface::class, CategoriesRepository::class);
     }
 
     /**
@@ -56,5 +61,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Plan::observe(PlanObserver::class);
         Tenant::observe(TenantObserver::class);
+        Category::observe(CategoryObserver::class);
     }
 }
